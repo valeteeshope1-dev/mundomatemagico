@@ -103,7 +103,15 @@ var PLANOS = {
         return d.length === 10 || d.length === 11;
       },
       /* a Cakto exige o codigo do pais na frente, senao ignora o numero */
-      formata: function (v) { return '55' + v.replace(/\D/g, ''); }
+      formata: function (v) { return '55' + v.replace(/\D/g, ''); },
+      mascara: function (v) { return mascaraTelefone(v); }
+    },
+    {
+      id: 'f-cpf', box: 'campo-cpf', chave: 'cpf',
+      valida: function (v) { return cpfValido(v); },
+      /* a Cakto espera so os digitos, sem ponto nem traco */
+      formata: function (v) { return v.replace(/\D/g, ''); },
+      mascara: function (v) { return mascaraCPF(v); }
     }
   ];
 
@@ -114,6 +122,36 @@ var PLANOS = {
     if (d.length <= 6) { return '(' + d.slice(0, 2) + ') ' + d.slice(2); }
     if (d.length <= 10) { return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6); }
     return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+  }
+
+  /* 000.000.000-00 */
+  function mascaraCPF(v) {
+    var d = v.replace(/\D/g, '').slice(0, 11);
+    if (d.length <= 3) { return d; }
+    if (d.length <= 6) { return d.slice(0, 3) + '.' + d.slice(3); }
+    if (d.length <= 9) { return d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6); }
+    return d.slice(0, 3) + '.' + d.slice(3, 6) + '.' + d.slice(6, 9) + '-' + d.slice(9);
+  }
+
+  /* Confere os dois digitos verificadores. Sem isto, um numero digitado
+     errado so seria recusado la no pagamento, depois de o cliente achar
+     que ja tinha terminado. */
+  function cpfValido(v) {
+    var d = v.replace(/\D/g, '');
+    if (d.length !== 11) { return false; }
+    if (/^(\d)\1{10}$/.test(d)) { return false; }   /* 111.111.111-11 e afins */
+
+    var i, soma, resto;
+
+    soma = 0;
+    for (i = 0; i < 9; i++) { soma += parseInt(d.charAt(i), 10) * (10 - i); }
+    resto = soma % 11;
+    if (parseInt(d.charAt(9), 10) !== (resto < 2 ? 0 : 11 - resto)) { return false; }
+
+    soma = 0;
+    for (i = 0; i < 10; i++) { soma += parseInt(d.charAt(i), 10) * (11 - i); }
+    resto = soma % 11;
+    return parseInt(d.charAt(10), 10) === (resto < 2 ? 0 : 11 - resto);
   }
 
   /* campo vazio nao e erro: os dados sao pedidos de novo no passo seguinte */
@@ -147,7 +185,7 @@ var PLANOS = {
       var input = el(campo.id);
 
       input.addEventListener('input', function () {
-        if (campo.id === 'f-fone') { input.value = mascaraTelefone(input.value); }
+        if (campo.mascara) { input.value = campo.mascara(input.value); }
         marcar(campo, false);   /* enquanto digita, nao acusa erro */
         guardar();
         atualizarLink();

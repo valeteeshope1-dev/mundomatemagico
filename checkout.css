@@ -162,6 +162,11 @@ h1{font-size:21px;color:var(--navy);margin:18px 0 14px;line-height:1.3}
 .campo.invalido input{border-color:#E5A0A0;background:#FFFAFA}
 .campo.invalido input:focus{border-color:#C0392B;box-shadow:0 0 0 3px rgba(192,57,43,.14)}
 .campo.invalido .erro{display:block}
+/* WhatsApp e CPF lado a lado quando ha espaco: sao curtos e se completam */
+.dupla{display:grid;gap:16px}
+@media (min-width:520px){
+  .dupla{grid-template-columns:1fr 1fr}
+}
 .dica{color:var(--suave);font-size:12.5px;margin:16px 0 0}
 
 /* ---------- depoimentos: prints do WhatsApp ----------
