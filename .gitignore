@@ -24,3 +24,15 @@ index-ORIGINAL-sem-CSP.html
 
 # Versao PNG dos depoimentos (1,4 MB). A landing usa o .jpg.
 assets/celular-comentarios.png
+
+# Scripts de rastreamento removidos do HTML (Pixel da Meta, gtag, UTMify,
+# Cloudflare). Eram copias locais congeladas do site original, nao os codigos
+# oficiais. Ficam no disco caso voce queira consultar, mas nao sao publicados.
+assets/meta-pixel-1284170466741867.js
+assets/fbevents.js
+assets/pixel.js
+assets/latest.js
+assets/launcher.js
+assets/id.min.js
+assets/cf-insights.js
+assets/id.gif
