@@ -29,7 +29,7 @@ var PLANOS = {
       'Envio imediato por e-mail'
     ],
 
-    pay: 'https://pay.cakto.com.br/3x2uik7'
+    pay: 'https://pay.cakto.com.br/3x2uik7_1081866'
   },
 
   premium: {
@@ -51,7 +51,7 @@ var PLANOS = {
       'Envio imediato por e-mail (em PDF)'
     ],
 
-    pay: 'https://pay.cakto.com.br/hod657w'
+    pay: 'https://pay.cakto.com.br/hod657w_1081890'
   }
 
 };
@@ -422,10 +422,23 @@ var PLANOS = {
       rolarPara(el('cta'), 'center');
     });
 
-    el('cta').addEventListener('click', function (ev) {
-      if (el('cta').getAttribute('aria-disabled') === 'true') {
+    el("cta").addEventListener("click", function (ev) {
+      if (el("cta").getAttribute("aria-disabled") === "true") {
         ev.preventDefault();
         cobrarPendencias();   /* mostra o que falta em vez de so nao reagir */
+        return;
+      }
+
+      /* Avisa o Pixel que a pessoa saiu daqui para pagar. E o ultimo evento
+         que este site consegue medir: a compra em si acontece na Cakto, e
+         quem informa a Meta e o painel dela. */
+      if (typeof fbq === "function") {
+        var p = PLANOS[planoAtual];
+        fbq("track", "InitiateCheckout", {
+          content_name: p.nome,
+          value: p.preco / 100,
+          currency: "BRL"
+        });
       }
     });
   });
