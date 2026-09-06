@@ -82,21 +82,28 @@ var PLANOS = {
 
   /* ======================= identificacao do cliente ======================= */
 
+  /* "chave" e o nome do parametro que a Cakto espera na URL do checkout.
+     Nao invente nomes aqui: sao os documentados em
+     ajuda.cakto.com.br -> "Como usar URL para checkout pre-preenchido".
+     Errar o nome nao da erro nenhum - o campo simplesmente chega vazio
+     do outro lado, e o cliente digita tudo de novo. */
   var CAMPOS = [
     {
       id: 'f-email', box: 'campo-email', chave: 'email',
       valida: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
     },
     {
-      id: 'f-nome', box: 'campo-nome', chave: 'nome',
+      id: 'f-nome', box: 'campo-nome', chave: 'name',
       valida: function (v) { return v.trim().split(/\s+/).length >= 2; }
     },
     {
-      id: 'f-fone', box: 'campo-fone', chave: 'telefone',
+      id: 'f-fone', box: 'campo-fone', chave: 'phone',
       valida: function (v) {
         var d = v.replace(/\D/g, '');
         return d.length === 10 || d.length === 11;
-      }
+      },
+      /* a Cakto exige o codigo do pais na frente, senao ignora o numero */
+      formata: function (v) { return '55' + v.replace(/\D/g, ''); }
     }
   ];
 
@@ -172,8 +179,14 @@ var PLANOS = {
     var extras = [];
     CAMPOS.forEach(function (c) {
       var v = el(c.id).value.trim();
-      if (v !== '' && !estaErrado(c)) {
-        extras.push(encodeURIComponent(c.chave) + '=' + encodeURIComponent(v));
+      if (v === '' || estaErrado(c)) { return; }
+      if (c.formata) { v = c.formata(v); }
+      extras.push(encodeURIComponent(c.chave) + '=' + encodeURIComponent(v));
+
+      /* a Cakto tem campo de confirmacao de e-mail; sem isto o cliente
+         digitaria o mesmo endereco duas vezes do outro lado */
+      if (c.chave === 'email') {
+        extras.push('confirmEmail=' + encodeURIComponent(v));
       }
     });
 
