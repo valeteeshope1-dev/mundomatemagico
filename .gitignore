@@ -1,0 +1,26 @@
+# Backups de edicao: ficam no seu computador, nunca no site publicado.
+# Sem isto, qualquer pessoa poderia abrir seusite.com/index.html.antes-cakto.bak
+# e ler precos antigos, o @ antigo do Instagram e os links do checkout anterior.
+*.bak
+
+# Prints originais das conversas, caso voltem para ca por engano.
+# Eles contem telefone e e-mail de cliente e nao podem ir para a web.
+Coment*rio*.jpg
+prints-originais/
+
+# Logos em alta que nenhuma pagina usa (3,2 MB de peso morto)
+LOGO FUNDO BRANCO.png
+LOGO FUNDO TRANSPARENTE.png
+
+# Lixo de sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Copias antigas da landing: contem o @ antigo do Instagram e os links do
+# checkout da Alfacademi. Publicadas, ficariam acessiveis por URL direta.
+index-ANTES-do-nome-novo.html
+index-ORIGINAL-sem-CSP.html
+
+# Versao PNG dos depoimentos (1,4 MB). A landing usa o .jpg.
+assets/celular-comentarios.png

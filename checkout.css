@@ -1,0 +1,254 @@
+/* Checkout - Mundo Matemagico
+   Paleta herdada da landing: azul #2672BD, navy #20263B, amarelo #fdce00 */
+:root{
+  --azul:#2672BD;
+  --azul-esc:#12304B;
+  --navy:#20263B;
+  --amarelo:#fdce00;
+  --verde:#16A34A;
+  --verde-esc:#128040;
+  --fundo:#F4F8FC;
+  --borda:#C9DBEE;
+  --texto:#333;
+  --suave:#6b7482;
+  --branco:#fff;
+  --sombra:0 2px 10px rgba(32,38,59,.07);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--fundo);color:var(--texto);
+  font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:15px;line-height:1.6;
+}
+img{max-width:100%;height:auto;display:block}
+:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px;border-radius:6px}
+
+/* ---------- topo ---------- */
+.barra{background:var(--branco);border-bottom:1px solid var(--borda);padding:14px 0}
+.barra .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.barra img{height:42px;width:auto}
+.seguro{display:flex;align-items:center;gap:6px;color:var(--verde);font-size:12px;font-weight:700;white-space:nowrap}
+.seguro svg{width:15px;height:15px;fill:currentColor;flex:none}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+
+/* ---------- passos ---------- */
+.passos{display:flex;align-items:center;gap:10px;justify-content:center;margin:22px 0 4px;flex-wrap:wrap}
+.passo{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--suave)}
+.passo .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#dbe5f0;color:var(--suave);font-size:12px;flex:none}
+.passo.on{color:var(--navy)}
+.passo.on .n{background:var(--azul);color:#fff}
+.passos .sep{width:26px;height:2px;background:#dbe5f0;border-radius:2px}
+
+main{padding:8px 0 44px}
+h1{font-size:21px;color:var(--navy);margin:18px 0 14px;line-height:1.3}
+
+.bloco{background:var(--branco);border:1px solid var(--borda);border-radius:14px;box-shadow:var(--sombra);padding:20px;margin-bottom:16px}
+.bloco > h2{
+  font-size:12px;letter-spacing:.9px;text-transform:uppercase;color:var(--suave);
+  margin:0 0 14px;font-weight:800;
+}
+
+/* ---------- carrinho ---------- */
+.item{display:flex;gap:14px;align-items:flex-start}
+.item .thumb{width:76px;height:76px;flex:none;border-radius:10px;overflow:hidden;border:1px solid var(--borda);background:var(--fundo)}
+.item .thumb img{width:100%;height:100%;object-fit:cover}
+.item .nome{font-weight:800;color:var(--navy);font-size:16px;margin:0 0 3px;line-height:1.3}
+.item .desc{color:var(--suave);font-size:13px;margin:0}
+.item .val{margin-left:auto;text-align:right;flex:none}
+.item .val .preco{font-weight:800;color:var(--verde);font-size:17px;white-space:nowrap}
+.item .val .de{display:block;font-size:12px;color:var(--suave);text-decoration:line-through}
+.item .val .de[hidden]{display:none}
+
+/* ---------- selecao de plano ---------- */
+.planos{display:grid;gap:12px}
+.plano{
+  position:relative;display:block;cursor:pointer;
+  border:2px solid var(--borda);border-radius:12px;padding:16px 16px 16px 46px;background:var(--branco);
+  transition:border-color .15s,background .15s;
+}
+.plano:hover{border-color:var(--azul)}
+.plano input{position:absolute;opacity:0;pointer-events:none}
+.plano .marca{
+  position:absolute;left:16px;top:18px;width:20px;height:20px;border-radius:50%;
+  border:2px solid #b9c9db;background:#fff;transition:border-color .15s;
+}
+.plano .marca::after{
+  content:"";position:absolute;inset:3px;border-radius:50%;background:var(--azul);transform:scale(0);transition:transform .15s;
+}
+.plano input:checked ~ .marca{border-color:var(--azul)}
+.plano input:checked ~ .marca::after{transform:scale(1)}
+.plano:has(input:checked){border-color:var(--azul);background:#F7FBFF}
+.plano input:focus-visible ~ .marca{outline:3px solid var(--amarelo);outline-offset:2px}
+
+.plano .corpo{display:block}
+.plano .titulo{font-weight:800;color:var(--navy);font-size:15.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.plano .resumo{display:block;color:var(--suave);font-size:13px;margin:3px 0 0}
+.plano .linha-preco{margin-top:8px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.plano .p{font-size:20px;font-weight:800;color:var(--verde)}
+.plano .p-de{font-size:13px;color:var(--suave);text-decoration:line-through}
+.plano .p-parc{font-size:12.5px;color:var(--suave);width:100%}
+.selo{
+  background:var(--amarelo);color:var(--navy);font-size:10.5px;font-weight:800;
+  letter-spacing:.5px;padding:3px 8px;border-radius:99px;text-transform:uppercase;white-space:nowrap;
+}
+
+/* ---------- inclusos ---------- */
+.inclui{list-style:none;margin:0;padding:0}
+.inclui li{display:flex;gap:9px;align-items:flex-start;margin-bottom:9px;font-size:14px}
+.inclui li:last-child{margin-bottom:0}
+.inclui svg{width:15px;height:15px;fill:var(--verde);flex:none;margin-top:4px}
+
+/* ---------- resumo ---------- */
+.resumo-linha{display:flex;justify-content:space-between;gap:12px;font-size:14px;margin-bottom:9px;color:var(--suave)}
+.resumo-total{
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  border-top:1px dashed var(--borda);margin-top:14px;padding-top:14px;
+}
+.resumo-total .rot{font-weight:800;color:var(--navy);font-size:16px}
+.resumo-total .v{font-weight:800;color:var(--verde);font-size:26px;line-height:1}
+.parcelado{text-align:right;color:var(--suave);font-size:12.5px;margin:6px 0 0}
+
+/* ---------- pagamento ---------- */
+.formas{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.forma{
+  display:flex;align-items:center;gap:8px;border:1px solid var(--borda);border-radius:9px;
+  padding:9px 14px;font-size:13.5px;font-weight:700;color:var(--navy);background:var(--fundo);
+}
+.forma svg{width:19px;height:19px;flex:none}
+.forma svg.card{fill:var(--azul)}
+.forma svg.pix{fill:#32BCAD;stroke:#32BCAD}
+.nota{color:var(--suave);font-size:12.5px;margin:0}
+
+/* ---------- selos de confianca ----------
+   Sem borda nem fundo de propósito: entre dois cartões brancos, uma faixa
+   leve separa melhor do que mais um cartão. */
+.selos{
+  list-style:none;margin:0 0 16px;padding:2px 4px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:14px 12px;
+}
+.selos li{display:flex;align-items:flex-start;gap:9px}
+.selos svg{width:20px;height:20px;fill:var(--verde);flex:none;margin-top:2px}
+.selos span{display:block;font-size:12px;line-height:1.35;color:var(--suave)}
+.selos b{display:block;color:var(--navy);font-size:13px;font-weight:800;margin-bottom:1px}
+@media (min-width:560px){
+  .selos{grid-template-columns:repeat(4,1fr);gap:16px}
+}
+
+/* ---------- identificacao ---------- */
+.campos{display:grid;gap:16px}
+.campo label{display:block;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:6px}
+.campo input{
+  width:100%;font-family:inherit;font-size:15px;color:var(--texto);
+  border:1px solid var(--borda);border-radius:10px;padding:14px 16px;background:var(--branco);
+  transition:border-color .15s,box-shadow .15s;
+}
+.campo input::placeholder{color:#9aa5b1}
+.campo input:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 3px rgba(38,114,189,.16)}
+.campo .erro{display:none;color:#C0392B;font-size:12.5px;margin:6px 0 0}
+.campo.invalido input{border-color:#E5A0A0;background:#FFFAFA}
+.campo.invalido input:focus{border-color:#C0392B;box-shadow:0 0 0 3px rgba(192,57,43,.14)}
+.campo.invalido .erro{display:block}
+.dica{color:var(--suave);font-size:12.5px;margin:16px 0 0}
+
+/* ---------- depoimentos: prints do WhatsApp ----------
+   Carrossel horizontal em vez de empilhar: tres prints de celular somam mais
+   de 2000px de altura, e empurrar isso entre o formulario e o botao de compra
+   custa venda. Assim ocupa a altura de um so. */
+.prints{
+  display:flex;gap:12px;margin:0;
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding-bottom:8px;
+}
+.prints figure{
+  margin:0;flex:0 0 84%;scroll-snap-align:center;
+  border:1px solid var(--borda);border-radius:12px;overflow:hidden;
+  background:#EFE7DE;box-shadow:var(--sombra);
+}
+.prints img{display:block;width:100%;height:auto}
+.prints:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px;border-radius:12px}
+.arraste{margin:10px 0 0;color:var(--suave);font-size:12px;text-align:center}
+@media (min-width:620px){
+  /* dois por vez: com o print inteiro, tres lado a lado ficam ilegiveis */
+  .prints figure{flex-basis:48%}
+}
+
+/* ---------- (mantido) conversas recriadas em HTML ----------
+   Recriadas em HTML, nao sao prints. O texto e real (transcrito das conversas
+   do lojista); o que se reproduz aqui e so a linguagem visual do aplicativo,
+   porque e nela que o cliente reconhece uma conversa de verdade.
+   Telefone, e-mail e foto ficam de fora: dado pessoal nao vai para a pagina. */
+.conversas{display:grid;gap:14px;margin:0}
+.conversa{
+  background:#EFE7DE;
+  background-image:radial-gradient(rgba(11,20,26,.035) 1px, transparent 1px);
+  background-size:20px 20px;
+  border:1px solid #E1D8CD;border-radius:12px;
+  padding:15px 13px 20px;
+  display:flex;flex-direction:column;gap:13px;
+}
+.msg{
+  position:relative;max-width:87%;
+  padding:7px 10px 4px;border-radius:9px;
+  font-size:13.5px;line-height:1.46;color:#111B21;
+  box-shadow:0 1px 1px rgba(11,20,26,.13);
+}
+.msg p{margin:0}
+.msg.rec{align-self:flex-start;background:#fff;border-top-left-radius:2px}
+.msg.env{align-self:flex-end;background:#D9FDD3;border-top-right-radius:2px}
+.msg .hora{
+  display:flex;align-items:center;justify-content:flex-end;gap:3px;
+  font-size:10.5px;color:#667781;margin-top:2px;
+  font-variant-numeric:tabular-nums;
+}
+.msg .hora svg{width:15px;height:15px;fill:#53BDEB;flex:none}
+.msg .reacao{
+  position:absolute;left:9px;bottom:-12px;
+  background:#fff;border:1px solid #E1D8CD;border-radius:99px;
+  padding:1px 6px;font-size:11px;line-height:1.35;
+  box-shadow:0 1px 2px rgba(11,20,26,.12);
+}
+.msg.tem-reacao{margin-bottom:7px}
+
+.fonte{margin:18px 0 0;color:var(--suave);font-size:11.5px;line-height:1.45}
+
+/* ---------- garantia ---------- */
+.garantia{display:flex;gap:12px;align-items:flex-start;background:#FFF9E3;border-left:4px solid var(--amarelo);border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:16px}
+.garantia svg{width:22px;height:22px;fill:var(--amarelo);flex:none;margin-top:2px}
+.garantia p{margin:0;font-size:13.5px}
+.garantia strong{color:var(--navy)}
+
+/* ---------- CTA ---------- */
+.cta{
+  display:block;width:100%;text-align:center;text-decoration:none;cursor:pointer;
+  background:var(--verde);color:#fff;font-family:inherit;font-weight:800;font-size:17px;letter-spacing:.4px;
+  border:0;border-radius:12px;padding:18px 20px;box-shadow:0 4px 0 var(--verde-esc);
+  transition:transform .08s,box-shadow .08s,background .15s;
+}
+.cta:hover{background:#15b054}
+.cta:active{transform:translateY(3px);box-shadow:0 1px 0 var(--verde-esc)}
+.cta[aria-disabled="true"]{background:#b6bfca;box-shadow:0 4px 0 #97a1ae;cursor:not-allowed}
+.cta[aria-disabled="true"]:active{transform:none;box-shadow:0 4px 0 #97a1ae}
+.pos-cta{text-align:center;color:var(--suave);font-size:12.5px;margin:12px 0 0}
+
+.aviso{
+  display:none;background:#FDECEC;border:1px solid #F5B5B5;color:#8A1F1F;
+  border-radius:10px;padding:14px 16px;font-size:13.5px;margin:0 0 14px;
+}
+.aviso.on{display:block}
+.aviso code{background:#fff;border:1px solid #EEC9C9;border-radius:4px;padding:1px 5px;font-size:12.5px}
+
+/* ---------- rodape ---------- */
+footer{background:var(--navy);color:#cfd6e4;padding:24px 0;font-size:12.5px}
+footer a{color:#fff}
+footer p{margin:0 0 6px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px}
+
+@media (min-width:680px){
+  body{font-size:15.5px}
+  h1{font-size:24px}
+  .bloco{padding:24px}
+  .planos{gap:14px}
+}

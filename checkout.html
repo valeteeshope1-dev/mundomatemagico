@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; form-action 'none'; frame-src 'none'; base-uri 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Checkout — Mundo Matemágico</title>
+<link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="wrap">
+    <a href="index.html"><img src="assets/logo-mundo-matemagico.jpg" alt="Mundo Matemágico"></a>
+    <span class="seguro">
+      <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M144 144v48h160v-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192v-48C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64v192c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64h16z"/></svg>
+      Ambiente seguro
+    </span>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="passos">
+    <span class="passo on"><span class="n">1</span> Seu pedido</span>
+    <span class="sep"></span>
+    <span class="passo"><span class="n">2</span> Pagamento</span>
+    <span class="sep"></span>
+    <span class="passo"><span class="n">3</span> Acesso no e-mail</span>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+
+  <h1>Confirme seu pedido</h1>
+
+  <!-- avisa quando o link de pagamento ainda nao foi colado em checkout.js -->
+  <div class="aviso" id="aviso" role="alert">
+    <strong>Configuração pendente:</strong> o link de pagamento do
+    <strong id="aviso-plano">plano</strong> ainda não foi cadastrado.
+    Abra <code>checkout.js</code> e cole o link de pagamento no campo <code>pay</code> desse plano.
+    <em>Este aviso só aparece para você — mas o botão fica desativado para todo mundo até o link ser colado.</em>
+  </div>
+
+  <!-- ---------------- carrinho ---------------- -->
+  <section class="bloco">
+    <h2>Seu carrinho</h2>
+    <div class="item">
+      <span class="thumb"><img id="item-img" src="" alt=""></span>
+      <div>
+        <p class="nome" id="item-nome"></p>
+        <p class="desc" id="item-desc"></p>
+      </div>
+      <span class="val">
+        <span class="de" id="item-de" hidden></span>
+        <span class="preco" id="item-preco"></span>
+      </span>
+    </div>
+  </section>
+
+  <!-- ---------------- selos de confianca ---------------- -->
+  <ul class="selos" aria-label="Garantias desta compra">
+    <li>
+      <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M144 144v48h160v-48c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192v-48C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64v192c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64h16z"/></svg>
+      <span><b>Compra segura</b>Ambiente protegido</span>
+    </li>
+    <li>
+      <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140 15.9 113.8 32.3 92.1 54.3 82.8L242.7 2.9C246.8 1 251.4 0 256 0z"/></svg>
+      <span><b>7 dias de garantia</b>Devolução integral</span>
+    </li>
+    <li>
+      <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M349.4 44.6c5.6-12.9 1.7-28-9.4-36.5s-26.5-8.3-37.3 .5l-256 208c-10.3 8.4-14.2 22.4-9.5 34.8S54.7 272 68 272l111.5 0L162.6 467.4c-5.6 12.9-1.7 28 9.4 36.5s26.5 8.3 37.3-.5l256-208c10.3-8.4 14.2-22.4 9.5-34.8s-16.5-20.6-29.8-20.6l-111.5 0L349.4 44.6z"/></svg>
+      <span><b>Acesso imediato</b>Chega no seu e-mail</span>
+    </li>
+    <li>
+      <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+      <span><b>Dados protegidos</b>Não guardamos seu cartão</span>
+    </li>
+  </ul>
+
+  <!-- ---------------- escolha do plano ---------------- -->
+  <section class="bloco">
+    <h2>Escolha o seu plano</h2>
+    <div class="planos" id="planos" role="radiogroup" aria-label="Escolha o seu plano"></div>
+  </section>
+
+  <!-- ---------------- identificacao ---------------- -->
+  <section class="bloco">
+    <h2>Identificação</h2>
+    <div class="campos">
+      <div class="campo" id="campo-email">
+        <label for="f-email">E-mail</label>
+        <input type="email" id="f-email" autocomplete="email" inputmode="email"
+               spellcheck="false" placeholder="seuemail@exemplo.com">
+        <p class="erro">Digite um e-mail válido — é nele que o material chega.</p>
+      </div>
+      <div class="campo" id="campo-nome">
+        <label for="f-nome">Nome completo</label>
+        <input type="text" id="f-nome" autocomplete="name" placeholder="Nome e sobrenome">
+        <p class="erro">Informe o nome e o sobrenome.</p>
+      </div>
+      <div class="campo" id="campo-fone">
+        <label for="f-fone">WhatsApp</label>
+        <input type="tel" id="f-fone" autocomplete="tel" inputmode="numeric"
+               maxlength="15" placeholder="DDD + número">
+        <p class="erro">Informe DDD + número (10 ou 11 dígitos).</p>
+      </div>
+    </div>
+    <p class="dica">Esses dados adiantam o seu cadastro no pagamento. Você confirma tudo no passo seguinte.</p>
+  </section>
+
+  <!-- ---------------- quem ja comprou ----------------
+       Prints REAIS de conversas no WhatsApp, tratados antes de publicar:
+         depoimento-1  recorte que descarta o telefone +55 11 ...
+         depoimento-2  recorte que descarta o comprovante (CNPJ e pagador)
+         depoimento-3  recorte que descarta telefone e foto; e-mail tapado
+       Os originais NAO ficam na pasta do site. Se trocar alguma imagem,
+       trate antes: dado pessoal de cliente nao pode ir para a pagina. -->
+  <section class="bloco">
+    <h2>Quem já comprou</h2>
+
+    <div class="prints" tabindex="0" role="group" aria-label="Conversas com clientes no WhatsApp">
+      <figure>
+        <img src="assets/depoimento-1.jpg" width="828" height="1469" loading="lazy" decoding="async"
+             alt="Conversa no WhatsApp: cliente escreve que o material chegou, que é excelente, e se desculpa pela desconfiança porque há muito golpe por aí.">
+      </figure>
+      <figure>
+        <img src="assets/depoimento-2.jpg" width="828" height="1471" loading="lazy" decoding="async"
+             alt="Conversa no WhatsApp: cliente diz que estava com medo de comprar e que o material é perfeito.">
+      </figure>
+      <figure>
+        <img src="assets/depoimento-3.jpg" width="828" height="1078" loading="lazy" decoding="async"
+             alt="Conversa no WhatsApp: cliente elogia o trabalho e recebe as boas-vindas com as instruções de acesso.">
+      </figure>
+    </div>
+
+    <p class="arraste" aria-hidden="true">Arraste para o lado para ver as outras &rarr;</p>
+    <p class="fonte">Conversas reais com clientes. Telefone, e-mail e fotos foram removidos das imagens.</p>
+  </section>
+
+  <!-- ---------------- o que esta incluso ---------------- -->
+  <section class="bloco">
+    <h2>O que está incluso</h2>
+    <ul class="inclui" id="inclui"></ul>
+  </section>
+
+  <!-- ---------------- resumo + pagamento ---------------- -->
+  <section class="bloco">
+    <h2>Resumo</h2>
+    <div class="resumo-linha">
+      <span id="sub-nome"></span>
+      <span id="sub-valor"></span>
+    </div>
+    <div class="resumo-total">
+      <span class="rot">Total</span>
+      <span class="v" id="total"></span>
+    </div>
+    <p class="parcelado" id="parcelado"></p>
+  </section>
+
+  <section class="bloco">
+    <h2>Formas de pagamento</h2>
+    <div class="formas">
+      <span class="forma">
+        <svg class="card" viewBox="0 0 576 512" aria-hidden="true"><path d="M64 32C28.7 32 0 60.7 0 96v32h576V96c0-35.3-28.7-64-64-64H64zM576 224H0v192c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16h-64c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+        Cartão de crédito
+      </span>
+      <span class="forma">
+        <svg class="pix" viewBox="0 0 48 48" aria-hidden="true"><g fill="#32BCAD" stroke="#32BCAD" stroke-width="3" stroke-linejoin="round"><path d="M24 5 32 13 24 21 16 13Z"/><path d="M43 24 35 32 27 24 35 16Z"/><path d="M24 43 16 35 24 27 32 35Z"/><path d="M5 24 13 16 21 24 13 32Z"/></g></svg>
+        Pix
+      </span>
+    </div>
+    <p class="nota">Os dados de pagamento são preenchidos no ambiente seguro da próxima etapa. Nenhum dado de cartão passa por este site.</p>
+  </section>
+
+  <!-- ---------------- garantia ---------------- -->
+  <div class="garantia">
+    <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140 15.9 113.8 32.3 92.1 54.3 82.8L242.7 2.9C246.8 1 251.4 0 256 0z"/></svg>
+    <p><strong>7 dias de garantia incondicional.</strong> Se não fizer sentido para você, devolvemos o valor integral. Sem burocracia e sem explicação obrigatória.</p>
+  </div>
+
+  <a class="cta" id="cta" href="#" rel="noopener">IR PARA O PAGAMENTO SEGURO</a>
+  <p class="pos-cta">Você será levado ao <strong>ambiente seguro de pagamento</strong> para concluir a compra.<br>Após a confirmação, o acesso chega no seu e-mail.</p>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Mundo Matemágico</strong> — material didático de matemática para o 1º ao 5º ano.</p>
+    <p>Dúvidas: <a href="mailto:suportemundomatemagico@gmail.com">suportemundomatemagico@gmail.com</a> — atendimento 24 horas, todos os dias.</p>
+    <div class="links">
+      <a href="index.html">Voltar ao site</a>
+      <a href="politica-de-privacidade.html">Política de Privacidade</a>
+      <a href="termos-de-uso.html">Termos de Uso</a>
+    </div>
+  </div>
+</footer>
+
+<script src="checkout.js"></script>
+</body>
+</html>

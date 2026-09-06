@@ -1,0 +1,14 @@
+# Vale para o deploy pela CLI da Vercel. O .gitignore cobre o deploy via GitHub;
+# os dois listam a mesma coisa de proposito, para nao depender de qual caminho
+# for usado.
+*.bak
+Coment*rio*.jpg
+prints-originais/
+LOGO FUNDO BRANCO.png
+LOGO FUNDO TRANSPARENTE.png
+Thumbs.db
+desktop.ini
+.DS_Store
+index-ANTES-do-nome-novo.html
+index-ORIGINAL-sem-CSP.html
+assets/celular-comentarios.png

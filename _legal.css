@@ -1,0 +1,70 @@
+/* Estilo compartilhado das paginas legais - Mundo Matemagico */
+:root{
+  --azul:#2672BD;
+  --navy:#20263B;
+  --amarelo:#fdce00;
+  --fundo:#F4F8FC;
+  --texto:#333;
+  --suave:#5b6472;
+  --borda:#C9DBEE;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--fundo);
+  color:var(--texto);
+  font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.7;
+}
+a{color:var(--azul);text-decoration:underline;text-underline-offset:2px}
+a:hover,a:focus-visible{color:var(--navy)}
+:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px;border-radius:3px}
+
+.topo{background:var(--navy);color:#fff;padding:18px 0}
+.topo .wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.topo .marca{font-weight:700;font-size:17px;letter-spacing:.2px;color:#fff;text-decoration:none}
+.topo .marca span{color:var(--amarelo)}
+.topo .voltar{color:#fff;font-size:14px;text-decoration:none;border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:7px 16px}
+.topo .voltar:hover,.topo .voltar:focus-visible{background:#fff;color:var(--navy)}
+
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+main{padding:40px 0 56px}
+.card{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:36px 34px}
+
+h1{font-size:30px;line-height:1.25;color:var(--navy);margin:0 0 6px}
+.atualizado{color:var(--suave);font-size:13px;margin:0 0 28px}
+h2{font-size:19px;line-height:1.35;color:var(--navy);margin:34px 0 10px;padding-top:20px;border-top:1px solid #E7EEF6}
+h2:first-of-type{border-top:0;padding-top:0;margin-top:26px}
+h3{font-size:16px;color:var(--navy);margin:22px 0 8px}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:8px}
+strong{color:var(--navy)}
+
+.sumario{background:var(--fundo);border:1px solid var(--borda);border-radius:10px;padding:18px 22px;margin:0 0 8px}
+.sumario p{font-weight:700;color:var(--navy);margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.6px}
+.sumario ol{margin:0;padding-left:20px}
+.sumario li{margin-bottom:4px;font-size:15px}
+
+.destaque{background:#FFF9E3;border-left:4px solid var(--amarelo);border-radius:0 8px 8px 0;padding:16px 20px;margin:0 0 18px}
+.destaque p:last-child{margin-bottom:0}
+
+.contato{background:var(--fundo);border:1px solid var(--borda);border-radius:10px;padding:20px 22px;margin-top:8px}
+.contato p:last-child{margin-bottom:0}
+.contato .email{font-size:17px;font-weight:700;word-break:break-word}
+
+footer{background:var(--navy);color:#cfd6e4;padding:26px 0;font-size:13px}
+footer a{color:#fff}
+footer p{margin:0 0 6px}
+footer p:last-child{margin-bottom:0}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px}
+
+@media (max-width:600px){
+  body{font-size:15px}
+  .card{padding:26px 20px;border-radius:12px}
+  h1{font-size:24px}
+  h2{font-size:17px}
+}
