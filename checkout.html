@@ -111,11 +111,20 @@
           <label for="f-cpf">CPF</label>
           <input type="text" id="f-cpf" inputmode="numeric" autocomplete="off"
                  maxlength="14" placeholder="000.000.000-00">
-          <p class="erro">CPF inválido — confira os números digitados.</p>
+          <p class="erro">Informe um CPF válido.</p>
         </div>
       </div>
     </div>
-    <p class="dica">Esses dados adiantam o seu cadastro no pagamento. Você confirma tudo no passo seguinte.</p>
+    <p class="dica">Esses dados vão preenchidos para o pagamento — você não digita tudo de novo.</p>
+
+    <!-- Atalho ate o botao de compra: entre este ponto e o final da pagina ha
+         depoimentos, o resumo e a garantia, e nem todo mundo rola ate la.
+         Se algum campo estiver vazio ou errado, o botao aponta o campo em vez
+         de descer. -->
+    <button type="button" class="descer" id="descer">
+      Continuar para o pagamento
+      <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.7 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+    </button>
   </section>
 
   <!-- ---------------- quem ja comprou ----------------

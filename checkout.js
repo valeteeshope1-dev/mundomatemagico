@@ -154,14 +154,50 @@ var PLANOS = {
     return parseInt(d.charAt(10), 10) === (resto < 2 ? 0 : 11 - resto);
   }
 
-  /* campo vazio nao e erro: os dados sao pedidos de novo no passo seguinte */
+  /* Vira true na primeira tentativa de avancar. Antes disso, campo vazio nao
+     e acusado como erro - ninguem gosta de ver o formulario ficar vermelho
+     antes de ter tido a chance de preencher. Depois, vazio conta como erro. */
+  var exigirTudo = false;
+
   function estaErrado(campo) {
     var v = el(campo.id).value;
-    return v.trim() !== '' && !campo.valida(v);
+    if (v.trim() === '') { return exigirTudo; }
+    return !campo.valida(v);
+  }
+
+  /* Criterio para liberar o botao de compra: aqui vazio sempre pesa. */
+  function incompleto(campo) {
+    var v = el(campo.id).value;
+    return v.trim() === '' || !campo.valida(v);
+  }
+
+  function primeiroPendente() {
+    for (var i = 0; i < CAMPOS.length; i++) {
+      if (incompleto(CAMPOS[i])) { return CAMPOS[i]; }
+    }
+    return null;
   }
 
   function marcar(campo, mostrarErro) {
     el(campo.box).classList.toggle('invalido', mostrarErro && estaErrado(campo));
+  }
+
+  function rolarPara(alvo, bloco) {
+    var suave = !(window.matchMedia &&
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    alvo.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: bloco || 'center' });
+  }
+
+  /* Aponta o primeiro campo pendente e leva o cliente ate ele. */
+  function cobrarPendencias() {
+    exigirTudo = true;
+    CAMPOS.forEach(function (c) { marcar(c, true); });
+    var falta = primeiroPendente();
+    if (falta) {
+      rolarPara(el(falta.box), 'center');
+      el(falta.id).focus({ preventScroll: true });
+    }
+    return falta;
   }
 
   function guardar() {
@@ -213,11 +249,21 @@ var PLANOS = {
       return;
     }
 
-    /* leva os dados ja preenchidos para adiantar o cadastro no checkout */
+    aviso.classList.remove('on');
+
+    /* Sem os quatro campos validos o botao fica travado: o objetivo e que
+       ninguem chegue no pagamento com dado faltando ou errado. */
+    if (primeiroPendente()) {
+      cta.removeAttribute('href');
+      cta.setAttribute('aria-disabled', 'true');
+      cta.textContent = 'PREENCHA SEUS DADOS ACIMA';
+      return;
+    }
+
+    /* leva os dados preenchidos para o cliente nao digitar tudo de novo */
     var extras = [];
     CAMPOS.forEach(function (c) {
       var v = el(c.id).value.trim();
-      if (v === '' || estaErrado(c)) { return; }
       if (c.formata) { v = c.formata(v); }
       extras.push(encodeURIComponent(c.chave) + '=' + encodeURIComponent(v));
 
@@ -228,10 +274,9 @@ var PLANOS = {
       }
     });
 
-    cta.href = extras.length ? p.pay + '?' + extras.join('&') : p.pay;
+    cta.href = p.pay + '?' + extras.join('&');
     cta.removeAttribute('aria-disabled');
     cta.textContent = 'IR PARA O PAGAMENTO SEGURO';
-    aviso.classList.remove('on');
   }
 
   /* ====================== cartoes de escolha de plano ===================== */
@@ -371,25 +416,16 @@ var PLANOS = {
     montarSeletor(inicial);
     render(inicial);
 
+    /* Atalho: desce ate o botao de compra, ou cobra o que falta antes. */
+    el('descer').addEventListener('click', function () {
+      if (cobrarPendencias()) { return; }
+      rolarPara(el('cta'), 'center');
+    });
+
     el('cta').addEventListener('click', function (ev) {
-      var cta = el('cta');
-
-      if (cta.getAttribute('aria-disabled') === 'true') {
+      if (el('cta').getAttribute('aria-disabled') === 'true') {
         ev.preventDefault();
-        return;
-      }
-
-      /* so barra quando ha dado preenchido errado - nunca por campo vazio */
-      var ruim = null;
-      CAMPOS.forEach(function (c) {
-        marcar(c, true);
-        if (!ruim && estaErrado(c)) { ruim = c; }
-      });
-
-      if (ruim) {
-        ev.preventDefault();
-        el(ruim.id).focus();
-        el(ruim.box).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        cobrarPendencias();   /* mostra o que falta em vez de so nao reagir */
       }
     });
   });
