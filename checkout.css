@@ -187,27 +187,17 @@ h1{font-size:21px;color:var(--navy);margin:18px 0 14px;line-height:1.3}
 }
 
 /* ---------- depoimentos: prints do WhatsApp ----------
-   Carrossel horizontal em vez de empilhar: tres prints de celular somam mais
-   de 2000px de altura, e empurrar isso entre o formulario e o botao de compra
-   custa venda. Assim ocupa a altura de um so. */
+   Empilhados, um abaixo do outro: o cliente ve as tres conversas so rolando,
+   sem precisar descobrir que dava para arrastar de lado.
+   Sem moldura: nada de borda, canto arredondado, sombra ou fundo bege em
+   volta. O print ocupa toda a largura do bloco. */
 .prints{
-  display:flex;gap:12px;margin:0;
-  overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-  padding-bottom:8px;
+  display:flex;flex-direction:column;gap:14px;margin:0;
 }
 .prints figure{
-  margin:0;flex:0 0 84%;scroll-snap-align:center;
-  border:1px solid var(--borda);border-radius:12px;overflow:hidden;
-  background:#EFE7DE;box-shadow:var(--sombra);
+  margin:0;width:100%;
 }
 .prints img{display:block;width:100%;height:auto}
-.prints:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px;border-radius:12px}
-.arraste{margin:10px 0 0;color:var(--suave);font-size:12px;text-align:center}
-@media (min-width:620px){
-  /* dois por vez: com o print inteiro, tres lado a lado ficam ilegiveis */
-  .prints figure{flex-basis:48%}
-}
 
 /* ---------- (mantido) conversas recriadas em HTML ----------
    Recriadas em HTML, nao sao prints. O texto e real (transcrito das conversas
