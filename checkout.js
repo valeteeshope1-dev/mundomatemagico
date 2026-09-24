@@ -15,40 +15,43 @@ var PLANOS = {
 
   basico: {
     nome: 'Plano Básico',
-    desc: '298 páginas — Mundo Matemágico 1º ao 5º ano, em PDF.',
+    desc: '300 atividades — Mundo Matemágico 1º ao 5º ano, em PDF. Sem o aplicativo.',
     img: 'assets/Loja_LK_Post_-_Matematica_4_Operacoes-1-1024x1024.png',
     preco: 1290,          // R$ 12,90  (sempre em centavos)
     de: null,             // sem preco riscado
     parcelas: null,       // sem parcelamento
-    resumo: '298 páginas em PDF · pagamento único',
+    resumo: 'Somente o material · pagamento único',
     inclui: [
-      '298 páginas do Mundo Matemágico — 1º ao 5º ano',
+      '300 atividades do Mundo Matemágico — 1º ao 5º ano',
       'Arquivo em PDF, pronto para imprimir',
       'Impressão ilimitada',
       'Acesso vitalício ao material',
-      'Envio imediato por e-mail'
+      'Envio imediato por e-mail',
+      'Não inclui o aplicativo'
     ],
 
     pay: 'https://pay.cakto.com.br/3x2uik7_1081866'
   },
 
   premium: {
-    nome: 'Plano Premium',
-    desc: 'Todos os materiais inclusos, em versão editável.',
+    nome: 'Plano Completo',
+    desc: 'Aplicativo + 300 atividades para baixar e imprimir, dentro do app.',
     img: 'assets/bonus-Loja_LK_Post_-_Matematica_4_Operacoes_2-777x1024.png',
-    preco: 2490,          // R$ 24,90 - confere com o cadastro na plataforma e com a landing
+    preco: 3790,          // R$ 37,90 - confere com o cadastro na plataforma e com a landing
     de: 9700,             // R$ 97,00 riscado
     parcelas: "em até 3x no cartão",  // valor da parcela nao anunciado: depende da config de juros da plataforma
     selo: '⚡ Mais vendido',
-    resumo: 'Todos os materiais · versão editável',
+    resumo: 'Aplicativo + 300 atividades · todos os materiais',
     inclui: [
+      'Aplicativo Mundo Matemágico — prática guiada por etapas e níveis',
+      '300 atividades para baixar e imprimir, liberadas dentro do app',
       'Mundo Matemágico 1º ao 5º ano — Editável',
       'Unidades de Medida do 1º ao 5º ano — Editável',
       'Mural da Tabuada',
       'Uno das 4 operações',
       'Frações',
       'Acesso vitalício ao conteúdo',
-      'Envio imediato por e-mail (em PDF)'
+      'Envio imediato por e-mail (aplicativo + PDF)'
     ],
 
     pay: 'https://pay.cakto.com.br/hod657w_1081890'

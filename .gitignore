@@ -36,3 +36,8 @@ assets/launcher.js
 assets/id.min.js
 assets/cf-insights.js
 assets/id.gif
+
+# Arte de origem do topo (1,7 MB). O site usa so os recortes em assets/
+# (front-arte-app-papel.jpg e as duas bordas), entao o PNG inteiro nao
+# precisa ser publicado.
+IMAGEM FRONT NOVO CELULAR.png
