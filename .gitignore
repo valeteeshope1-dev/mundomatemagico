@@ -41,3 +41,10 @@ assets/id.gif
 # (front-arte-app-papel.jpg e as duas bordas), entao o PNG inteiro nao
 # precisa ser publicado.
 IMAGEM FRONT NOVO CELULAR.png
+
+# Originais em alta das duas paginas de amostra (1,8 MB cada). O site usa
+# os recortes comprimidos em assets/amostra-atividades-*.jpg.
+IMG 1 QUE E PARA SUBISTITUIR.png
+IMG 2 QUE E PARA SUBISTITUIR.png
+IMG*QUE*SUBISTITUIR*.png
+IMAGENS COLORIDAS.png
